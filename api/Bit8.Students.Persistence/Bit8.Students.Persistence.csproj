@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AssemblyName>Bit8.Students.Persistence</AssemblyName>
+        <RootNamespace>Bit8.Students.Persistence</RootNamespace>
+        <PackageId>Bit8.Students.Persistence</PackageId>
+        <Authors>Bit8.Students.Persistence</Authors>
+        <Company>Bit8.Students.Persistence</Company>
+        <Product>Bit8.Students.Persistence</Product>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Bit8.Students.Common\Bit8.Students.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.Data.SqlClient" Version="4.3.0" />
+    </ItemGroup>
+
+</Project>
