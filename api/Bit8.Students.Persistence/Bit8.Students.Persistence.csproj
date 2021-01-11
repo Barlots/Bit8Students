@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Bit8.Students.Common\Bit8.Students.Common.csproj" />
+      <ProjectReference Include="..\Bit8.Students.Domain\Bit8.Students.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
