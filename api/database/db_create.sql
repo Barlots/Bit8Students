@@ -37,16 +37,16 @@ create table student
     name varchar(128) charset utf8 not null
 );
 
-create table student_score
+create table student_assignment
 (
     id                     int auto_increment
         primary key,
     discipline_semester_id int not null,
     student_id             int not null,
 	score				   dec(2,1),
-    constraint student_score_discipline_semester_id_fk
+    constraint student_assignment_discipline_semester_id_fk
         foreign key (discipline_semester_id) references discipline_semester (id),
-    constraint student_score_student_id_fk
+    constraint student_assignment_student_id_fk
         foreign key (student_id) references student (id)
 
 );

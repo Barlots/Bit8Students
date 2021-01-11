@@ -48,7 +48,7 @@ namespace Bit8.Students.Persistence.Repositories
             var sql = @"select 1 where exists (
                     select 1 from discipline d
                         join discipline_semester ds on d.id = ds.discipline_id
-                        join student_score ss on ds.id = ss.discipline_semester_id
+                        join student_assignment sa on ds.id = sa.discipline_semester_id
                     where d.id = @Id
                 );";
             
