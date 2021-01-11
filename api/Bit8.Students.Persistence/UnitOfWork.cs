@@ -1,6 +1,7 @@
 using System.Data;
-using System.Data.SqlClient;
 using Bit8.Students.Common;
+using Bit8.Students.Persistence.Repositories;
+using MySql.Data.MySqlClient;
 
 namespace Bit8.Students.Persistence
 {
@@ -9,9 +10,11 @@ namespace Bit8.Students.Persistence
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
+        private IDisciplineRepository _disciplineRepository;
+
         public UnitOfWork(IBConfiguration configuration)
         {
-            _connection = new SqlConnection(configuration.ConnectionString);
+            _connection = new MySqlConnection(configuration.ConnectionString);
             _connection.Open();
             _transaction = _connection.BeginTransaction();
         }
@@ -21,6 +24,8 @@ namespace Bit8.Students.Persistence
             _transaction?.Dispose();
             _connection?.Dispose();
         }
+
+        public IDisciplineRepository DisciplineRepository => _disciplineRepository ?? (_disciplineRepository = new DisciplineRepository(_transaction));
 
         public void Commit()
         {
