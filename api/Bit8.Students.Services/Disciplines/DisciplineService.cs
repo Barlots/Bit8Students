@@ -40,7 +40,12 @@ namespace Bit8.Students.Services.Disciplines
 
         public async Task<Result> DeleteAsync(int id)
         {
-            var hasAssignedScores = await _uow.DisciplineRepository.HasScores(id);
+            if (id == 0)
+            {
+                return Result.Fail("Id must be provided");
+            }
+            
+            var hasAssignedScores = await _uow.DisciplineRepository.HasScoresAsync(id);
 
             if (hasAssignedScores)
             {
