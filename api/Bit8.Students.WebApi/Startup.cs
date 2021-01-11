@@ -1,6 +1,7 @@
 using Bit8.Students.Common;
 using Bit8.Students.Persistence;
 using Bit8.Students.Services;
+using Bit8.Students.Services.Disciplines;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +39,8 @@ namespace Bit8.Students.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
