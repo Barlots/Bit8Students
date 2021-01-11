@@ -18,9 +18,9 @@ namespace Bit8.Students.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateDiscipline(CreateDisciplineDto dto)
+        public async Task<IActionResult> CreateDiscipline(CreateDisciplineRequest request)
         {
-            var result = await _disciplineService.CreateAsync(dto);
+            var result = await _disciplineService.CreateAsync(request);
             return Ok(result.Value);
         }
 

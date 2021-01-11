@@ -1,9 +1,14 @@
+using System.Globalization;
+using System.Linq;
 using Bit8.Students.Common;
 using Bit8.Students.Persistence;
 using Bit8.Students.Services;
 using Bit8.Students.Services.Disciplines;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,11 +27,29 @@ namespace Bit8.Students.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc()
+                .AddFluentValidation()
+                .ConfigureApiBehaviorOptions(opt =>
+                {
+                    opt.InvalidModelStateResponseFactory = c =>
+                    {
+                        var errors = c.ModelState.Values.Where(v => v.Errors.Count > 0)
+                            .SelectMany(v => v.Errors)
+                            .Select(v => v.ErrorMessage)
+                            .ToArray();
+
+                        return new BadRequestObjectResult(errors);
+                    };
+                });
+            ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
+            
             services.AddTransient<IBConfiguration>(x => new BConfiguration(Configuration));
 
             services.AddTransient<IDisciplineService, DisciplineService>();
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddTransient<IValidator<CreateDisciplineRequest>, CreateDisciplineRequestValidator>();
             
             services.AddControllers();
         }

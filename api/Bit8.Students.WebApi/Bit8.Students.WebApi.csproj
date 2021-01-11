@@ -9,5 +9,9 @@
       <ProjectReference Include="..\Bit8.Students.Services\Bit8.Students.Services.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
+    </ItemGroup>
+
 
 </Project>

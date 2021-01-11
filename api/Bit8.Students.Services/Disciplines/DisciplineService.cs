@@ -16,9 +16,9 @@ namespace Bit8.Students.Services.Disciplines
             _uow = unitOfWork;
         }
         
-        public async Task<Result<int>> CreateAsync(CreateDisciplineDto dto)
+        public async Task<Result<int>> CreateAsync(CreateDisciplineRequest request)
         {
-            var discipline = new Discipline {Name = dto.Name, ProfessorName = dto.ProfessorName};
+            var discipline = new Discipline {Name = request.Name, ProfessorName = request.ProfessorName};
             
             await _uow.DisciplineRepository.AddAsync(discipline);
             _uow.Commit();
