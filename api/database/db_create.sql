@@ -19,11 +19,9 @@ create table semester
 create table discipline_semester
 (
     id            int auto_increment
-        primary key,
+		primary key,
     semester_id   int not null,
     discipline_id int not null,
-    constraint discipline_semester_id_uindex
-        unique (id),
     constraint discipline_semester_disciplines_id_fk
         foreign key (discipline_id) references discipline (id),
     constraint discipline_semester_semester_id_fk
@@ -32,21 +30,24 @@ create table discipline_semester
 
 create table student
 (
-    id   int auto_increment
+    id          int auto_increment
         primary key,
-    name varchar(128) charset utf8 not null
+    name        varchar(128) charset utf8 not null,
+    semester_id int                       null,
+    constraint student_semester_id_fk
+        foreign key (semester_id) references semester (id)
 );
 
 create table student_assignment
 (
     id                     int auto_increment
         primary key,
-    discipline_semester_id int not null,
-    student_id             int not null,
-	score				   dec(2,1),
-    constraint student_assignment_discipline_semester_id_fk
+    discipline_semester_id int           not null,
+    student_id             int           not null,
+    score                  decimal(2, 1) null,
+    constraint student_score_discipline_semester_id_fk
         foreign key (discipline_semester_id) references discipline_semester (id),
-    constraint student_assignment_student_id_fk
+    constraint student_score_student_id_fk
         foreign key (student_id) references student (id)
-
 );
+

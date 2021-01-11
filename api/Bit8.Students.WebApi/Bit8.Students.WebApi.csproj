@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Bit8.Students.Common\Bit8.Students.Common.csproj" />
+      <ProjectReference Include="..\Bit8.Students.Query\Bit8.Students.Query.csproj" />
       <ProjectReference Include="..\Bit8.Students.Services\Bit8.Students.Services.csproj" />
     </ItemGroup>
 

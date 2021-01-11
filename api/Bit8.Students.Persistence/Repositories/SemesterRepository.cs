@@ -43,6 +43,12 @@ namespace Bit8.Students.Persistence.Repositories
             );
         }
 
+        public async Task<bool> ExistsAsync(int id)
+        {
+            var sql = @"select count(1) from semester where Id=@Id";
+            return await _transaction.Connection.ExecuteScalarAsync<bool>(sql, new { Id = id});
+        }
+
         public async Task<bool> HasStudentsAsync(int id)
         {
             var sql = @"select 1 where exists (

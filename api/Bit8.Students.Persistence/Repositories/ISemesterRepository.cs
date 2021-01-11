@@ -10,6 +10,7 @@ namespace Bit8.Students.Persistence.Repositories
         Task<IEnumerable<Semester>> AllAsync();
         Task DeleteAsync(Semester entity);
         Task DeleteAsync(int id);
+        Task<bool> ExistsAsync(int id);
 
         Task<bool> HasStudentsAsync(int id);
     }

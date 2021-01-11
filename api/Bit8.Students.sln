@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit8.Students.Domain", "Bit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit8.Students.Services", "Bit8.Students.Services\Bit8.Students.Services.csproj", "{1E66D93A-5B4E-45D6-A2DA-E9C164AD9EBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bit8.Students.Query", "Bit8.Students.Query\Bit8.Students.Query.csproj", "{EB27EEB8-C985-4644-909B-B438AC151D69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{1E66D93A-5B4E-45D6-A2DA-E9C164AD9EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E66D93A-5B4E-45D6-A2DA-E9C164AD9EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E66D93A-5B4E-45D6-A2DA-E9C164AD9EBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB27EEB8-C985-4644-909B-B438AC151D69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB27EEB8-C985-4644-909B-B438AC151D69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB27EEB8-C985-4644-909B-B438AC151D69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB27EEB8-C985-4644-909B-B438AC151D69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

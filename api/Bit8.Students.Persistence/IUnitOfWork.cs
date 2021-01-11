@@ -7,7 +7,8 @@ namespace Bit8.Students.Persistence
     {
         IDisciplineRepository DisciplineRepository { get; }
         ISemesterRepository SemesterRepository { get; }
-        
+        IStudentRepository StudentRepository { get; }
+
         void Commit();
     }
 }
