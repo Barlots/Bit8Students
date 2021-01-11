@@ -6,6 +6,7 @@ namespace Bit8.Students.Persistence
     public interface IUnitOfWork : IDisposable
     {
         IDisciplineRepository DisciplineRepository { get; }
+        ISemesterRepository SemesterRepository { get; }
         
         void Commit();
     }

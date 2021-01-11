@@ -11,6 +11,7 @@ namespace Bit8.Students.Persistence
         private IDbTransaction _transaction;
 
         private IDisciplineRepository _disciplineRepository;
+        private ISemesterRepository _semesterRepository;
 
         public UnitOfWork(IBConfiguration configuration)
         {
@@ -26,6 +27,7 @@ namespace Bit8.Students.Persistence
         }
 
         public IDisciplineRepository DisciplineRepository => _disciplineRepository ?? (_disciplineRepository = new DisciplineRepository(_transaction));
+        public ISemesterRepository SemesterRepository => _semesterRepository ?? (_semesterRepository = new SemesterRepository(_transaction));
 
         public void Commit()
         {
