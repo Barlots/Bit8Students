@@ -1,4 +1,4 @@
-namespace Bit8.Students.Services.Dto
+namespace Bit8.Students.Services.Disciplines
 {
     public class CreateDisciplineDto
     {
