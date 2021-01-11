@@ -1,4 +1,6 @@
 using Bit8.Students.Common;
+using Bit8.Students.Persistence;
+using Bit8.Students.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +22,10 @@ namespace Bit8.Students.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IBConfiguration>(x => new BConfiguration(Configuration));
+
+            services.AddTransient<IDisciplineService, DisciplineService>();
+            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             
             services.AddControllers();
         }
