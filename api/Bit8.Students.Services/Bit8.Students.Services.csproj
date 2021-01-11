@@ -8,4 +8,8 @@
       <ProjectReference Include="..\Bit8.Students.Persistence\Bit8.Students.Persistence.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FluentResults" Version="2.3.0" />
+    </ItemGroup>
+
 </Project>

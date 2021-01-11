@@ -10,5 +10,7 @@ namespace Bit8.Students.Persistence.Repositories
         Task<IEnumerable<Discipline>> AllAsync();
         Task DeleteAsync(Discipline entity);
         Task DeleteAsync(int id);
+
+        Task<bool> HasScores(int id);
     }
 }

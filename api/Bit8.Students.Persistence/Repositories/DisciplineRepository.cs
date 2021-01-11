@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using Bit8.Students.Domain.Models;
 using Dapper;
@@ -40,6 +41,19 @@ namespace Bit8.Students.Persistence.Repositories
                 "delete from discipline where id = @Id", 
                 new {Id = id}
                 );
+        }
+
+        public async Task<bool> HasScores(int id)
+        {
+            var sql = @"select 1 where exists (
+                    select 1 from discipline d
+                        join discipline_semester ds on d.id = ds.discipline_id
+                        join student_score ss on ds.id = ss.discipline_semester_id
+                    where d.id = @Id
+                );";
+            
+            var result = await _transaction.Connection.QueryAsync(sql, new {Id = id});
+            return result.Any();
         }
     }
 }
