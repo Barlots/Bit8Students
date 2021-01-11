@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bit8.Students.Common;
 using Bit8.Students.Services.Students;
@@ -38,8 +39,17 @@ namespace Bit8.Students.Query.Students
                                 ) as without_scores on without_scores.sid = with_scores.sid and without_scores.did = with_scores.did
                         where with_scores.sid is null and with_scores.did is null";
 
-            var result = await Connection.QueryAsync<GetDisciplinesWithoutScoreDto>(sql);
-            return result;
+            var result = await Connection.QueryAsync(sql, 
+                (string student, string discipline) => new {student, discipline}, 
+                splitOn: "discipline_name");
+            
+            return result
+                .GroupBy(x => x.student,
+                    (key, group) => new GetDisciplinesWithoutScoreDto
+                    {
+                        StudentName = key, 
+                        DisciplineNames = group.Select(x => x.discipline)
+                    });
         }
     }
 }
