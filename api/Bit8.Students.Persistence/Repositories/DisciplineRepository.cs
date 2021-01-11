@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 using Bit8.Students.Domain.Models;
 using Dapper;
 
@@ -14,29 +15,28 @@ namespace Bit8.Students.Persistence.Repositories
             _transaction = transaction;
         }
 
-        public void Add(Discipline entity)
+        public async Task AddAsync(Discipline entity)
         {
-            entity.Id = _transaction.Connection.ExecuteScalar<int>(
-                "insert into discipline(name, professor_name) values(@Name, @ProfessorName);",
+            entity.Id = await _transaction.Connection.ExecuteScalarAsync<int>(
+                "insert into discipline(name, professor_name) values(@Name, @ProfessorName); select LAST_INSERT_ID()",
                 new {Name = entity.Name, ProfessorName = entity.ProfessorName},
                 _transaction);
         }
-
-        public IEnumerable<Discipline> All()
+        public async Task<IEnumerable<Discipline>> AllAsync()
         {
-            return _transaction.Connection.Query<Discipline>(
+            return await _transaction.Connection.QueryAsync<Discipline>(
                 "select * from discipline",
                 _transaction);
         }
 
-        public void Delete(Discipline entity)
+        public async Task DeleteAsync(Discipline entity)
         {
-            Delete(entity.Id);
+            await DeleteAsync(entity.Id);
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            _transaction.Connection.Execute(
+            await _transaction.Connection.ExecuteAsync(
                 "delete from discipline where id = @Id", 
                 new {Id = id}
                 );
