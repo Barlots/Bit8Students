@@ -2,8 +2,12 @@ using System.Globalization;
 using System.Linq;
 using Bit8.Students.Common;
 using Bit8.Students.Persistence;
+using Bit8.Students.Query;
+using Bit8.Students.Query.Students;
 using Bit8.Students.Services;
 using Bit8.Students.Services.Disciplines;
+using Bit8.Students.Services.Semesters;
+using Bit8.Students.Services.Students;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -46,10 +50,16 @@ namespace Bit8.Students.WebApi
             services.AddTransient<IBConfiguration>(x => new BConfiguration(Configuration));
 
             services.AddTransient<IDisciplineService, DisciplineService>();
+            services.AddTransient<ISemesterService, SemesterService>();
+            services.AddTransient<IStudentService, StudentService>();
             
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IStudentQuery, StudentQuery>();
 
             services.AddTransient<IValidator<CreateDisciplineRequest>, CreateDisciplineRequestValidator>();
+            services.AddTransient<IValidator<CreateSemesterRequest>, CreateSemesterRequestValidator>();
+            services.AddTransient<IValidator<AssignToSemesterRequest>, AssignToSemesterRequestValidator>();
+            services.AddTransient<IValidator<CreateStudentRequest>, CreateStudentRequestValidator>();
             
             services.AddControllers();
         }
