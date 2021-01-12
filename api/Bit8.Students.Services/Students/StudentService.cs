@@ -41,7 +41,7 @@ namespace Bit8.Students.Services.Students
             if (result.IsFailed) 
                 return result;
 
-            var student = await _uow.StudentRepository.Get(request.StudentId);
+            var student = await _uow.StudentRepository.GetAsync(request.StudentId);
             
             student.AssignToSemester(request.SemesterId);
             await _uow.StudentRepository.UpdateAsync(student);
