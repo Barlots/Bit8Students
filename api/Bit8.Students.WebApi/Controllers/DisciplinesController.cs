@@ -14,9 +14,10 @@ namespace Bit8.Students.WebApi.Controllers
         private readonly IDisciplineService _disciplineService;
         private readonly IDisciplineQuery _disciplineQuery;
         
-        public DisciplinesController(IDisciplineService disciplineService)
+        public DisciplinesController(IDisciplineService disciplineService, IDisciplineQuery disciplineQuery)
         {
             _disciplineService = disciplineService;
+            _disciplineQuery = disciplineQuery;
         }
 
         [HttpPost]

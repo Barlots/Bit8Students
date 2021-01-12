@@ -33,6 +33,11 @@ namespace Bit8.Students.Services.Disciplines
                 Id = request.Id
             };
 
+            if (!await _uow.DisciplineRepository.ExistsAsync(request.Id))
+            {
+                return Result.Fail("Discipline with given Id does not exist");
+            }
+
             await _uow.DisciplineRepository.UpdateAsync(discipline);
             _uow.Commit();
 

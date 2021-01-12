@@ -3,6 +3,7 @@ using System.Linq;
 using Bit8.Students.Common;
 using Bit8.Students.Persistence;
 using Bit8.Students.Query;
+using Bit8.Students.Query.Disciplines;
 using Bit8.Students.Query.Semesters;
 using Bit8.Students.Query.Students;
 using Bit8.Students.Services;
@@ -63,6 +64,9 @@ namespace Bit8.Students.WebApi
             services.AddTransient<IValidator<CreateSemesterRequest>, CreateSemesterRequestValidator>();
             services.AddTransient<IValidator<AssignToSemesterRequest>, AssignToSemesterRequestValidator>();
             services.AddTransient<IValidator<CreateStudentRequest>, CreateStudentRequestValidator>();
+            services.AddTransient<IValidator<UpdateStudentRequest>, UpdateStudentRequestValidator>();
+            services.AddTransient<IValidator<UpdateDisciplineRequest>, UpdateDisciplineRequestValidator>();
+            services.AddTransient<IValidator<UpdateSemesterRequest>, UpdateSemesterRequestValidator>();
             
             services.AddControllers();
         }

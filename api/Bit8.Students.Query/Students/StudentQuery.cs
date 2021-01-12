@@ -16,7 +16,7 @@ namespace Bit8.Students.Query.Students
         public async Task<IEnumerable<GetTopTenStudentsQuery>> GetTopTenAsync()
         {
             var sql = @"select s.name, avg(sa.score) as average_score from student s
-                        join student_assignment sa on s.id = sa.student_id
+                        left join student_assignment sa on s.id = sa.student_id
                         group by s.name
                         order by average_score desc
                         limit 10;";

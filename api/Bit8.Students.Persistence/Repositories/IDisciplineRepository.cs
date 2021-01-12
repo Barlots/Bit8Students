@@ -9,6 +9,7 @@ namespace Bit8.Students.Persistence.Repositories
         Task UpdateAsync(Discipline entity);
         Task DeleteAsync(Discipline entity);
         Task DeleteAsync(int id);
+        Task<bool> ExistsAsync(int id);
 
         Task<bool> HasScoresAsync(int id);
     }

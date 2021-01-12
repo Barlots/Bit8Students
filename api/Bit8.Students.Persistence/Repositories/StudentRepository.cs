@@ -44,8 +44,8 @@ namespace Bit8.Students.Persistence.Repositories
 
         public async Task<Student> GetAsync(int id)
         {
-            var sql = @"select student where id=@Id";
-            return await _transaction.Connection.ExecuteScalarAsync<Student>(sql, new {Id = id});
+            var sql = @"select * from student where id=@Id";
+            return await _transaction.Connection.QuerySingleAsync<Student>(sql, new {Id = id});
         }
 
         public async Task<bool> ExistsAsync(int id)

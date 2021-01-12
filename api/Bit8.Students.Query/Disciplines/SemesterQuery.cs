@@ -4,11 +4,11 @@ using Bit8.Students.Common;
 using Bit8.Students.Services.Disciplines;
 using Dapper;
 
-namespace Bit8.Students.Query.Semesters
+namespace Bit8.Students.Query.Disciplines
 {
     public class DisciplineQuery : QueryBase, IDisciplineQuery
     {
-        protected DisciplineQuery(IBConfiguration configuration) : base(configuration)
+        public DisciplineQuery(IBConfiguration configuration) : base(configuration)
         {
         }
 

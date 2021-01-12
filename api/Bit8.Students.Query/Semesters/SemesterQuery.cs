@@ -8,7 +8,7 @@ namespace Bit8.Students.Query.Semesters
 {
     public class SemesterQuery : QueryBase, ISemesterQuery
     {
-        protected SemesterQuery(IBConfiguration configuration) : base(configuration)
+        public SemesterQuery(IBConfiguration configuration) : base(configuration)
         {
         }
 
