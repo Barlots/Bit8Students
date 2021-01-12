@@ -10,6 +10,8 @@ namespace Bit8.Students.Persistence.Repositories
         Task DeleteAsync(Semester entity);
         Task DeleteAsync(int id);
         Task<bool> ExistsAsync(int id);
+        
+        Task AddRelationToDisciplineAsync(int semesterId, int disciplineId);
 
         Task<bool> HasStudentsAsync(int id);
     }

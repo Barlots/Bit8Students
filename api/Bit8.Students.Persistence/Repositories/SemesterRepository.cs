@@ -22,6 +22,7 @@ namespace Bit8.Students.Persistence.Repositories
                 "insert into semester(name) values(@Name); select LAST_INSERT_ID()",
                 new {Name = entity.Name},
                 _transaction);
+
         }
 
         public async Task DeleteAsync(Semester entity)
@@ -41,6 +42,12 @@ namespace Bit8.Students.Persistence.Repositories
         {
             var sql = @"select count(1) from semester where Id=@Id";
             return await _transaction.Connection.ExecuteScalarAsync<bool>(sql, new { Id = id});
+        }
+
+        public async Task AddRelationToDisciplineAsync(int semesterId, int disciplineId)
+        {
+            var sql = @"insert into discipline_semester(semester_id, discipline_id) values(@semesterId, @disciplineId)";
+            await _transaction.Connection.ExecuteAsync(sql, new { semesterId, disciplineId });
         }
 
         public async Task<bool> HasStudentsAsync(int id)

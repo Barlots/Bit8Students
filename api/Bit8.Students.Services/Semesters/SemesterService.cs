@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Bit8.Students.Domain.Models;
 using Bit8.Students.Persistence;
-using Bit8.Students.Services.Disciplines;
 using FluentResults;
 
 namespace Bit8.Students.Services.Semesters
@@ -22,8 +19,13 @@ namespace Bit8.Students.Services.Semesters
             var semester = new Semester { Name = request.Name };
             
             await _uow.SemesterRepository.AddAsync(semester);
-            _uow.Commit();
 
+            foreach (var disciplineId in request.DisciplineIds)
+            {
+                await _uow.SemesterRepository.AddRelationToDisciplineAsync(semester.Id, disciplineId);
+            }
+            
+            _uow.Commit();
             return Result.Ok(semester.Id);
         }
 
