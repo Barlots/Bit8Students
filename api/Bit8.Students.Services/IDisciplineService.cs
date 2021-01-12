@@ -8,7 +8,6 @@ namespace Bit8.Students.Services
     public interface IDisciplineService
     {
         Task<Result<int>> CreateAsync(CreateDisciplineRequest request);
-        Task<Result<IEnumerable<GetAllDisciplinesDto>>> GetAllAsync();
         Task<Result> DeleteAsync(int id);
     }
 }

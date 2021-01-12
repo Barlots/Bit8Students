@@ -7,7 +7,6 @@ namespace Bit8.Students.Persistence.Repositories
     public interface IStudentRepository
     {
         Task AddAsync(Student entity);
-        Task<IEnumerable<Student>> AllAsync();
         Task DeleteAsync(Student entity);
         Task DeleteAsync(int id);
         Task UpdateAsync(Student entity);

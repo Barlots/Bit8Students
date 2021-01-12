@@ -28,10 +28,10 @@ namespace Bit8.Students.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllStudents()
+        public async Task<IActionResult> GetAllStudentsWithSemesters()
         {
-            var result = await _studentService.GetAllAsync();
-            return Ok(result.Value);
+            var result = await _studentQuery.GetAllWithSemestersAsync();
+            return Ok(result);
         }
 
         [HttpPost]

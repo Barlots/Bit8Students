@@ -26,18 +26,6 @@ namespace Bit8.Students.Services.Disciplines
             return Result.Ok(discipline.Id);
         }
 
-        public async Task<Result<IEnumerable<GetAllDisciplinesDto>>> GetAllAsync()
-        {
-            var disciplines = await _uow.DisciplineRepository.AllAsync();
-            var mapped = disciplines.Select(x => new GetAllDisciplinesDto
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    ProfessorName = x.ProfessorName
-                });
-            return Result.Ok(mapped);
-        }
-
         public async Task<Result> DeleteAsync(int id)
         {
             if (id == 0)

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Bit8.Students.Query;
 using Bit8.Students.Services;
 using Bit8.Students.Services.Disciplines;
 using Bit8.Students.WebApi.Common;
@@ -11,6 +12,7 @@ namespace Bit8.Students.WebApi.Controllers
     public class DisciplinesController : ControllerBase
     {
         private readonly IDisciplineService _disciplineService;
+        private readonly IDisciplineQuery _disciplineQuery;
         
         public DisciplinesController(IDisciplineService disciplineService)
         {
@@ -27,8 +29,8 @@ namespace Bit8.Students.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDisciplines()
         {
-            var result = await _disciplineService.GetAllAsync();
-            return Ok(result.Value);
+            var result = await _disciplineQuery.GetAllAsync();
+            return Ok(result);
         }
 
         [HttpDelete]

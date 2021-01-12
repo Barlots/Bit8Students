@@ -9,5 +9,6 @@ namespace Bit8.Students.Query
     {
         Task<IEnumerable<GetTopTenStudentsDto>> GetTopTenAsync();
         Task<IEnumerable<GetDisciplinesWithoutScoreDto>> GetDisciplinesWithoutScore();
+        Task<IEnumerable<GetAllWithSemestersDto>> GetAllWithSemestersAsync();
     }
 }

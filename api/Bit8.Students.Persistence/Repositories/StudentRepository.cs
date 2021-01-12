@@ -22,12 +22,6 @@ namespace Bit8.Students.Persistence.Repositories
                 new {Name = entity.Name},
                 _transaction);
         }
-        public async Task<IEnumerable<Student>> AllAsync()
-        {
-            return await _transaction.Connection.QueryAsync<Student>(
-                "select * from student",
-                _transaction);
-        }
 
         public async Task DeleteAsync(Student entity)
         {

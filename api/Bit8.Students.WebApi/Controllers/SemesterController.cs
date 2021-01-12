@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Bit8.Students.Query;
 using Bit8.Students.Services;
 using Bit8.Students.Services.Semesters;
 using Bit8.Students.WebApi.Common;
@@ -11,10 +12,12 @@ namespace Bit8.Students.WebApi.Controllers
     public class SemesterController : Controller
     {
         private readonly ISemesterService _semesterService;
+        private readonly ISemesterQuery _semesterQuery;
         
-        public SemesterController(ISemesterService semesterService)
+        public SemesterController(ISemesterService semesterService, ISemesterQuery semesterQuery)
         {
             _semesterService = semesterService;
+            _semesterQuery = semesterQuery;
         }
 
         [HttpPost]
@@ -27,8 +30,8 @@ namespace Bit8.Students.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDisciplines()
         {
-            var result = await _semesterService.GetAllAsync();
-            return Ok(result.Value);
+            var result = await _semesterQuery.GetAllWithDisciplinesAsync();
+            return Ok(result);
         }
 
         [HttpDelete]

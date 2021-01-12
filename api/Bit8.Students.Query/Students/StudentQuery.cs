@@ -51,5 +51,24 @@ namespace Bit8.Students.Query.Students
                         DisciplineNames = group.Select(x => x.discipline)
                     });
         }
+
+        public async Task<IEnumerable<GetAllWithSemestersDto>> GetAllWithSemestersAsync()
+        {
+            var sql = @"select s.name student, sm.name semester from student s
+                        join student_assignment sa on s.id = sa.student_id
+                        join discipline_semester ds on sa.discipline_semester_id = ds.id
+                        join semester sm on ds.semester_id = sm.id";
+
+            var result = await Connection.QueryAsync(sql, (string student, string semester) => new {student, semester},
+                splitOn: "semester");
+
+            return result
+                .GroupBy(x => x.student,
+                    (key, group) => new GetAllWithSemestersDto
+                    {
+                        StudentName = key,
+                        SemesterNames = group.Select(x => x.semester)
+                    });
+        }
     }
 }

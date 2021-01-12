@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Bit8.Students.Domain.Models;
 using Bit8.Students.Persistence;
@@ -24,17 +22,6 @@ namespace Bit8.Students.Services.Students
             _uow.Commit();
 
             return Result.Ok(student.Id);
-        }
-
-        public async Task<Result<IEnumerable<GetAllSemestersDto>>> GetAllAsync()
-        {
-            var disciplines = await _uow.StudentRepository.AllAsync();
-            var mapped = disciplines.Select(x => new GetAllSemestersDto
-            {
-                Id = x.Id,
-                Name = x.Name
-            });
-            return Result.Ok(mapped);
         }
 
         public async Task<Result> AssignToSemesterAsync(AssignToSemesterRequest request)

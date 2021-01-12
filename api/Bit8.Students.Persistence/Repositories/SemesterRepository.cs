@@ -23,12 +23,6 @@ namespace Bit8.Students.Persistence.Repositories
                 new {Name = entity.Name},
                 _transaction);
         }
-        public async Task<IEnumerable<Semester>> AllAsync()
-        {
-            return await _transaction.Connection.QueryAsync<Semester>(
-                "select * from semester",
-                _transaction);
-        }
 
         public async Task DeleteAsync(Semester entity)
         {

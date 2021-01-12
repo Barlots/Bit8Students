@@ -23,12 +23,6 @@ namespace Bit8.Students.Persistence.Repositories
                 new {Name = entity.Name, ProfessorName = entity.ProfessorName},
                 _transaction);
         }
-        public async Task<IEnumerable<Discipline>> AllAsync()
-        {
-            return await _transaction.Connection.QueryAsync<Discipline>(
-                "select * from discipline",
-                _transaction);
-        }
 
         public async Task DeleteAsync(Discipline entity)
         {
