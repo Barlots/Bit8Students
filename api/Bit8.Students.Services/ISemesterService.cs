@@ -7,6 +7,7 @@ namespace Bit8.Students.Services
     public interface ISemesterService
     {
         Task<Result<int>> CreateAsync(CreateSemesterRequest request);
+        Task<Result> UpdateAsync(UpdateSemesterRequest request);
         Task<Result> DeleteAsync(int id);
     }
 }

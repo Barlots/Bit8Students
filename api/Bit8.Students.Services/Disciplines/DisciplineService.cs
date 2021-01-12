@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Bit8.Students.Domain.Models;
 using Bit8.Students.Persistence;
@@ -24,6 +22,21 @@ namespace Bit8.Students.Services.Disciplines
             _uow.Commit();
 
             return Result.Ok(discipline.Id);
+        }
+
+        public async Task<Result> UpdateAsync(UpdateDisciplineRequest request)
+        {
+            var discipline = new Discipline
+            {
+                Name = request.Name, 
+                ProfessorName = request.ProfessorName,
+                Id = request.Id
+            };
+
+            await _uow.DisciplineRepository.UpdateAsync(discipline);
+            _uow.Commit();
+
+            return Result.Ok();
         }
 
         public async Task<Result> DeleteAsync(int id)

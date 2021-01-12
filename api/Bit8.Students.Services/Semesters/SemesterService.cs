@@ -29,6 +29,18 @@ namespace Bit8.Students.Services.Semesters
             return Result.Ok(semester.Id);
         }
 
+        public async Task<Result> UpdateAsync(UpdateSemesterRequest request)
+        {
+            if (!await _uow.SemesterRepository.ExistsAsync(request.Id))
+            {
+                return Result.Fail("Semester with given id does not exist");
+            }
+
+            await _uow.StudentRepository.UpdateAsync(new Student {Id = request.Id, Name = request.Name});
+            _uow.Commit();
+            return Result.Ok();
+        }
+
         public async Task<Result> DeleteAsync(int id)
         {
             if (id == 0)

@@ -46,5 +46,18 @@ namespace Bit8.Students.WebApi.Controllers
 
             return Ok();
         }
+        
+        [HttpPatch]
+        public async Task<IActionResult> UpdateDiscipline(UpdateSemesterRequest request)
+        {
+            var result = await _semesterService.UpdateAsync(request);
+            
+            if (result.IsFailed)
+            {
+                return UnprocessableEntity(result.ToErrorArray());
+            }
+
+            return Ok();
+        }
     }
 }

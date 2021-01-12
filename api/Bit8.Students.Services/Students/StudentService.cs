@@ -38,16 +38,31 @@ namespace Bit8.Students.Services.Students
                 result.WithError("Student with given id does not exist");
             }
 
-            if (result.IsFailed)
-            {
+            if (result.IsFailed) 
                 return result;
-            }
 
             var student = await _uow.StudentRepository.Get(request.StudentId);
             
             student.AssignToSemester(request.SemesterId);
             await _uow.StudentRepository.UpdateAsync(student);
             
+            _uow.Commit();
+            return result;
+        }
+
+        public async Task<Result> UpdateAsync(UpdateStudentRequest request)
+        {
+            var result = Result.Ok();
+            
+            if (!await _uow.StudentRepository.ExistsAsync(request.Id))
+            {
+                result.WithError("Student with given id does not exist");
+            }
+
+            if (result.IsFailed) 
+                return result;
+
+            await _uow.StudentRepository.UpdateAsync(new Student {Id = request.Id, Name = request.Name});
             _uow.Commit();
             return result;
         }

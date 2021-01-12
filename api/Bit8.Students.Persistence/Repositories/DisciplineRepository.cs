@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +21,12 @@ namespace Bit8.Students.Persistence.Repositories
                 "insert into discipline(name, professor_name) values(@Name, @ProfessorName); select LAST_INSERT_ID()",
                 new {Name = entity.Name, ProfessorName = entity.ProfessorName},
                 _transaction);
+        }
+
+        public async Task UpdateAsync(Discipline entity)
+        {
+            var sql = @"update discipline set name=@Name, professor_name=@ProfessorName where id=@Id";
+            await _transaction.Connection.ExecuteAsync(sql, entity);
         }
 
         public async Task DeleteAsync(Discipline entity)
