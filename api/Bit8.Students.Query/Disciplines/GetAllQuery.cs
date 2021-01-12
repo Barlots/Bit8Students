@@ -1,6 +1,6 @@
 namespace Bit8.Students.Services.Disciplines
 {
-    public class GetAllDto
+    public class GetAllQuery
     {
         public int Id { get; set; }
         public string ProfessorName { get; set; }

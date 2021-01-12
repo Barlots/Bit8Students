@@ -12,7 +12,7 @@ namespace Bit8.Students.Query.Semesters
         {
         }
 
-        public async Task<IEnumerable<AllWithDisciplinesDto>> GetAllWithDisciplinesAsync()
+        public async Task<IEnumerable<GetAllWithDisciplinesQuery>> GetAllWithDisciplinesAsync()
         {
             var sql = @"select s.name semester, d.name discipline from semester s
                             join discipline_semester ds on s.id = ds.semester_id
@@ -23,7 +23,7 @@ namespace Bit8.Students.Query.Semesters
                 splitOn: "semester");
 
             return result.GroupBy(x => x.semester,
-                (key, group) => new AllWithDisciplinesDto
+                (key, group) => new GetAllWithDisciplinesQuery
                 {
                     SemesterName = key, 
                     DisciplineNames = group.Select(x => x.discipline)

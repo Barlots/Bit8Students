@@ -7,8 +7,8 @@ namespace Bit8.Students.Query
 {
     public interface IStudentQuery
     {
-        Task<IEnumerable<GetTopTenStudentsDto>> GetTopTenAsync();
-        Task<IEnumerable<GetDisciplinesWithoutScoreDto>> GetDisciplinesWithoutScore();
-        Task<IEnumerable<GetAllWithSemestersDto>> GetAllWithSemestersAsync();
+        Task<IEnumerable<GetTopTenStudentsQuery>> GetTopTenAsync();
+        Task<IEnumerable<GetDisciplinesWithoutScoreQuery>> GetDisciplinesWithoutScore();
+        Task<IEnumerable<GetAllWithSemestersQuery>> GetAllWithSemestersAsync();
     }
 }

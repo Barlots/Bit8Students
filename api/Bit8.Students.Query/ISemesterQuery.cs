@@ -6,6 +6,6 @@ namespace Bit8.Students.Query
 {
     public interface ISemesterQuery
     {
-        Task<IEnumerable<AllWithDisciplinesDto>> GetAllWithDisciplinesAsync();
+        Task<IEnumerable<GetAllWithDisciplinesQuery>> GetAllWithDisciplinesAsync();
     }
 }

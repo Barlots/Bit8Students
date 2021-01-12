@@ -13,7 +13,7 @@ namespace Bit8.Students.Query.Students
         {
         }
 
-        public async Task<IEnumerable<GetTopTenStudentsDto>> GetTopTenAsync()
+        public async Task<IEnumerable<GetTopTenStudentsQuery>> GetTopTenAsync()
         {
             var sql = @"select s.name, avg(sa.score) as average_score from student s
                         join student_assignment sa on s.id = sa.student_id
@@ -21,11 +21,11 @@ namespace Bit8.Students.Query.Students
                         order by average_score desc
                         limit 10;";
 
-            var result = await Connection.QueryAsync<GetTopTenStudentsDto>(sql);
+            var result = await Connection.QueryAsync<GetTopTenStudentsQuery>(sql);
             return result;
         }
 
-        public async Task<IEnumerable<GetDisciplinesWithoutScoreDto>> GetDisciplinesWithoutScore()
+        public async Task<IEnumerable<GetDisciplinesWithoutScoreQuery>> GetDisciplinesWithoutScore()
         {
             var sql = @"select without_scores.sname student_name, without_scores.dname discipline_name from (
                             select distinct s.id sid, d.id did from student s
@@ -45,14 +45,14 @@ namespace Bit8.Students.Query.Students
             
             return result
                 .GroupBy(x => x.student,
-                    (key, group) => new GetDisciplinesWithoutScoreDto
+                    (key, group) => new GetDisciplinesWithoutScoreQuery
                     {
                         StudentName = key, 
                         DisciplineNames = group.Select(x => x.discipline)
                     });
         }
 
-        public async Task<IEnumerable<GetAllWithSemestersDto>> GetAllWithSemestersAsync()
+        public async Task<IEnumerable<GetAllWithSemestersQuery>> GetAllWithSemestersAsync()
         {
             var sql = @"select s.name student, sm.name semester from student s
                         join student_assignment sa on s.id = sa.student_id
@@ -64,7 +64,7 @@ namespace Bit8.Students.Query.Students
 
             return result
                 .GroupBy(x => x.student,
-                    (key, group) => new GetAllWithSemestersDto
+                    (key, group) => new GetAllWithSemestersQuery
                     {
                         StudentName = key,
                         SemesterNames = group.Select(x => x.semester)

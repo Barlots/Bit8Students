@@ -12,10 +12,10 @@ namespace Bit8.Students.Query.Semesters
         {
         }
 
-        public async Task<IEnumerable<GetAllDto>> GetAllAsync()
+        public async Task<IEnumerable<GetAllQuery>> GetAllAsync()
         {
             var sql = @"select * from discipline";
-            var result = await Connection.QueryAsync<GetAllDto>(sql);
+            var result = await Connection.QueryAsync<GetAllQuery>(sql);
 
             return result;
         }
